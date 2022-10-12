@@ -73,8 +73,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/testimonials").hasRole(ROLE_ADMIN)
 
                 //Contacts
-                .antMatchers(HttpMethod.GET, "/contacts/contacts").hasAnyRole(ROLE_ADMIN, ROLE_USER)
-                .antMatchers(HttpMethod.POST, "/contacts").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.GET, "/contact/contacts").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.POST, "/contact").hasAnyRole(ROLE_ADMIN, ROLE_USER)
 
                 //Activities
                 .antMatchers(HttpMethod.POST, "/activities").hasRole(ROLE_ADMIN)
@@ -104,6 +104,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/comment").hasRole(ROLE_ADMIN)
                 .antMatchers(HttpMethod.POST, "/comment").hasRole(ROLE_USER)
                 .antMatchers(HttpMethod.DELETE, "/comment/**").hasAnyRole(ROLE_ADMIN,ROLE_USER)
+                .antMatchers(HttpMethod.PUT, "/comment/**").hasRole(ROLE_ADMIN)
+                .antMatchers(HttpMethod.GET, "/comment/posts/comments").hasAnyRole(ROLE_USER, ROLE_ADMIN)
 
                 //Docs
                 .antMatchers("/api/docs/**").permitAll()

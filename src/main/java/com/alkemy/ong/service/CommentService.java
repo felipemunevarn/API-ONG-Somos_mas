@@ -13,8 +13,11 @@ public interface CommentService{
     public List<CommentDTOBody> getAllComments();
     ResponseEntity<CommentDTO> create(CommentDTO commentDTO) throws NotFoundException;
 
+    ResponseEntity<?> updateComment(String id, CommentDTO commentDTO);
+
     ResponseEntity<?> deleteComment(String id, Authentication authentication) throws NotFoundException;
 
     boolean exitsById(String id);
 
+    public List<CommentDTOBody> getAllPostComments(String id);
 }
