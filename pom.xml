@@ -11,7 +11,7 @@
 	<groupId>com.alkemy</groupId>
 	<artifactId>ong</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ong</name>
+	<name>ong-somos-mas-296</name>
 	<description>ONG project with Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -95,17 +95,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-		      <groupId>com.heroku.sdk</groupId>
-		      <artifactId>heroku-maven-plugin</artifactId>
-		      <version>3.0.4</version>
-		      <configuration>
-		        <appName>ong</appName>
-		        <processTypes>
-		          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.example.Main</web>
-		        </processTypes>
-		      </configuration>
-		    </plugin>
 	        <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -118,6 +107,17 @@
                     </execution>
                 </executions>
             </plugin>
+           	<plugin>
+		      <groupId>com.heroku.sdk</groupId>
+		      <artifactId>heroku-maven-plugin</artifactId>
+		      <version>3.0.4</version>
+		      <configuration>
+		        <appName>ong-somos-mas-296</appName>
+		        <processTypes>
+		          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.alkemy.ong.OngApplication</web>
+		        </processTypes>
+		      </configuration>
+		    </plugin>
 		</plugins>
 	</build>
 
