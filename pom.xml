@@ -107,17 +107,7 @@
                     </execution>
                 </executions>
             </plugin>
-           	<plugin>
-		      <groupId>com.heroku.sdk</groupId>
-		      <artifactId>heroku-maven-plugin</artifactId>
-		      <version>3.0.4</version>
-		      <configuration>
-		        <appName>ong-somos-mas-296</appName>
-		        <processTypes>
-		          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.alkemy.ong.OngApplication</web>
-		        </processTypes>
-		      </configuration>
-		    </plugin>
+
 		</plugins>
 	</build>
 
