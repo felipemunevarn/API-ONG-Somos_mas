@@ -10,9 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up MySQL
-        run:
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ongsomosmas;' -u root -p root
+        run: sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ongsomosmas;' -u root -proot
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK
