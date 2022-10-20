@@ -1,8 +1,11 @@
 package com.alkemy.ong.controller;
 
 
+import com.alkemy.ong.dto.CategoryDTO;
 import com.alkemy.ong.dto.PagesDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,7 +33,7 @@ public class NewsController {
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Operation(summary = "Creation of a news")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "202", description = "Return created status code"),
+			@ApiResponse(responseCode = "201", description = "Return created status code"),
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "403", description = "Forbidden"),
 			@ApiResponse(responseCode = "404", description = "New not found")
@@ -60,17 +63,17 @@ public class NewsController {
 	@GetMapping(value = "/{id}")
 	@Operation(summary = "Get all News")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "201", description = "Found News"),
+			@ApiResponse(responseCode = "202", description = "Found News"),
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "403", description = "Forbidden"),
 			@ApiResponse(responseCode = "404", description = "New not found")
 	})
-	public ResponseEntity<NewsDTO> getNewsById(@PathVariable String id) {
+	public ResponseEntity<NewsDTO> getNewsById(@PathVariable String id){
 		try {
 			NewsDTO newsDTO = newsService.getNewsById(id);
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body(newsDTO);
-		} catch (Exception e) {
-			return new ResponseEntity("News not found", HttpStatus.NOT_FOUND);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<NewsDTO>(HttpStatus.NOT_FOUND);
 		}
 	}
 	@Tag(name = "News")
@@ -82,15 +85,23 @@ public class NewsController {
 			@ApiResponse(responseCode = "403", description = "Forbidden"),
 			@ApiResponse(responseCode = "404", description = "New not found")
 	})
-	public ResponseEntity<Void> deleteNews(@PathVariable String id) {
+	public ResponseEntity<String> deleteNews(@PathVariable String id) {
 		try {
 			newsService.deleteNews(id);
 		} catch (NotFoundException e) {
-			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
-
+	@Tag(name = "News")
+	@Operation(summary = "Get page of News")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Found the categories",
+					content = { @Content(mediaType = "application/json",
+							schema = @Schema(implementation = NewsDTO.class))}),
+			@ApiResponse(responseCode = "403", description = "User unauthorized",
+					content = @Content),
+	})
 	@GetMapping(params = "page")
 	public ResponseEntity<?> getNewsForPage(@RequestParam(defaultValue = "0") int page){
 		PagesDTO<NewsDTO> pages = newsService.getAllNewsForPages(page);
