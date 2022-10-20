@@ -8,15 +8,11 @@ jobs:
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
-    env:
-      DB_DATABASE: ongsomosmas
-      DB_USER: root
-      DB_PASSWORD: root
     steps:
       - name: Set up MySQL
         run:
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+          mysql -e 'CREATE DATABASE ongsomosmas;' -uroot -proot
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK
