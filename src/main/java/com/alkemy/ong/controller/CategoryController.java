@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import javax.validation.Valid;
 
-@RestController
 @RequestMapping("/categories")
 public class CategoryController {
 
