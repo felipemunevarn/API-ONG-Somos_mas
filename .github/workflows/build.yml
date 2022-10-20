@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Set up MySQL
         run: sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ongsomosmas;' -u root -proot
+          mysql -h localhost -u root -proot
+          CREATE DATABASE ongsomosmas;
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK
