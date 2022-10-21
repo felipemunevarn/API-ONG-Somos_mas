@@ -23,9 +23,9 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Run Tests
         run: mvn -B test
-  build:
+  sonar:
     needs: tests
-    name: sonar
+    name: Sonar Cloud
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
