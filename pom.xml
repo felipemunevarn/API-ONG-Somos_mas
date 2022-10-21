@@ -15,8 +15,6 @@
 	<description>ONG project with Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-	</properties>
-	<properties>
 		<sonar.organization>felipemunevarn</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
