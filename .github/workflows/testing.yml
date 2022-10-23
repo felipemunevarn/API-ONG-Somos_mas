@@ -60,6 +60,9 @@ jobs:
     name: Build
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
+    defaults: 
+      run: 
+        working-directory: ./target
     steps:
       #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
       - uses: actions/checkout@v1
@@ -87,7 +90,7 @@ jobs:
           #Set artifact name
           name: artifact
           #From this path
-          path: deploy/data-0.0.1-SNAPSHOT.jar
+          path: target/data-0.0.1-SNAPSHOT.jar
   
 #Deploy's job
   deploy:
