@@ -87,7 +87,7 @@ jobs:
           #Set artifact name
           name: artifact
           #From this path
-          path: ./target/data-0.0.1-SNAPSHOT.jar
+          path: deploy/data-0.0.1-SNAPSHOT.jar
   
 #Deploy's job
   deploy:
