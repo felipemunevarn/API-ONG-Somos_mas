@@ -60,9 +60,6 @@ jobs:
     name: Build
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
-    defaults: 
-      run: 
-        working-directory: target
     steps:
       #Check-out your repository under $GITHUB_WORKSPACE, so your workflow can access it
       - uses: actions/checkout@v1
@@ -85,7 +82,7 @@ jobs:
       #Build the application using Maven
       - name: Upload JAR
         #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           #Set artifact name
           name: artifact
